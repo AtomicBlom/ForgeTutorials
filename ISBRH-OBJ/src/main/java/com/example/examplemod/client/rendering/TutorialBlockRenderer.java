@@ -68,6 +68,7 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
 
     public void remapTextures() {
         //This won't neccessarily work if remapping to two texture sheets.
+        //Ideally, you would implement a much more sophisticated system if you have multiple Icons per model.
         final String s = ExampleMod.RESOURCE_PREFIX + "models/cupola.obj";
         originalModel = (WavefrontObject) AdvancedModelLoader.loadModel(new ResourceLocation(s));
         RenderingUtils.remapUVs(originalModel.groupObjects, icon);
