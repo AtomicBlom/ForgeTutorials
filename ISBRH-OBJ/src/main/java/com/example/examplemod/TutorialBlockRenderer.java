@@ -1,5 +1,6 @@
 package com.example.examplemod;
 
+import com.sun.prism.util.tess.Tess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
@@ -33,7 +34,12 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-        //System.out.println("Inventory");
+        final Tessellator instance = Tessellator.instance;
+        instance.startDrawingQuads();
+        Matrix4 matrix = new Matrix4();
+        matrix.translate(0.5, 0, 0.5);
+        RenderingUtils.renderStaticWavefrontModel(0, 0, 0, null, model, instance, matrix, 0, false);
+        instance.draw();
     }
 
     @Override
