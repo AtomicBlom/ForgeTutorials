@@ -16,15 +16,21 @@ import java.util.HashMap;
 public class RenderingUtils {
     public static int currentRenderPass;
 
-    public static void renderStaticWavefrontModel(TileEntity tile, WavefrontObject model, Tessellator tes, Matrix4 transform, int offsetLighting, boolean invertFaces, String... renderedParts) {
-        renderStaticWavefrontModel(tile.xCoord, tile.yCoord, tile.zCoord, tile.getWorldObj(), model, tes, transform, offsetLighting, invertFaces, renderedParts);
+    public static void renderStaticWavefrontModel(TileEntity tile, WavefrontObject model, Matrix4 transform, LightingMode offsetLighting, boolean invertFaces, String... renderedParts) {
+        renderStaticWavefrontModel(tile.xCoord, tile.yCoord, tile.zCoord, tile.getWorldObj(), model, transform, offsetLighting, invertFaces, renderedParts);
+    }
+
+    public static void renderStaticWavefrontModel(WavefrontObject model, Matrix4 transform, LightingMode offsetLighting, boolean invertFaces, String... renderedParts) {
+        renderStaticWavefrontModel(0, 0, 0, null, model, transform, offsetLighting, invertFaces, renderedParts);
     }
 
     /**
      * A big "Thank you!" to AtomicBlom and Rorax for helping me figure this one out =P
      */
-    public static void renderStaticWavefrontModel(int x, int y, int z, IBlockAccess world, WavefrontObject model, Tessellator tes, Matrix4 transform, int offsetLighting, boolean invertFaces, String... renderedParts)
+    public static void renderStaticWavefrontModel(int x, int y, int z, IBlockAccess world, WavefrontObject model, Matrix4 transform, LightingMode lightingMode, boolean invertFaces, String... renderedParts)
     {
+        Tessellator tessellator = Tessellator.instance;
+
         Block block = null;
 
         if(world!=null)
@@ -67,10 +73,10 @@ public class RenderingUtils {
 
                     HashMap<String, LightingUtils.BlockLightingInfo> light = new HashMap<String, LightingUtils.BlockLightingInfo>();
                     LightingUtils.BlockLightingInfo completeLight = null;
-                    if (offsetLighting == 0 && world != null)
+                    if (lightingMode == LightingMode.NONE && world != null)
                         completeLight = LightingUtils.calculateBlockLighting(side, world, block, x, y, z, 1, 1, 1);
 
-                    tes.setNormal(face.faceNormal.x, face.faceNormal.y, face.faceNormal.z);
+                    tessellator.setNormal(face.faceNormal.x, face.faceNormal.y, face.faceNormal.z);
 
                     final int vertexCount = face.vertices.length;
                     for (int i = 0; i < vertexCount; ++i) {
@@ -82,44 +88,50 @@ public class RenderingUtils {
                         vertexCopy.z = vertex.z;
                         transform.apply(vertexCopy);
 
-                        if (offsetLighting == 1 && world != null) {
+                        if (lightingMode == LightingMode.DEFAULT && world != null) {
                             String key = Math.round(x + vertex.x) + ";" + Math.round(y + vertex.y) + ";" + Math.round(z + vertex.z);
                             LightingUtils.BlockLightingInfo info = light.get(key);
                             if (info == null) {
                                 info = LightingUtils.calculateBlockLighting(side, world, block, (int) Math.round(x + vertex.x), (int) Math.round(y + vertex.y), (int) Math.round(z + vertex.z), 1, 1, 1);
                                 light.put(key, info);
                             }
-                            tes.setBrightness(corner == 0 ? info.brightnessTopLeft : corner == 1 ? info.brightnessBottomLeft : corner == 2 ? info.brightnessBottomRight : info.brightnessTopRight);
+                            tessellator.setBrightness(corner == 0 ? info.brightnessTopLeft : corner == 1 ? info.brightnessBottomLeft : corner == 2 ? info.brightnessBottomRight : info.brightnessTopRight);
                             float r = corner == 0 ? info.colorRedTopLeft : corner == 1 ? info.colorRedBottomLeft : corner == 2 ? info.colorRedBottomRight : info.colorRedTopRight;
                             float g = corner == 0 ? info.colorGreenTopLeft : corner == 1 ? info.colorGreenBottomLeft : corner == 2 ? info.colorGreenBottomRight : info.colorGreenTopRight;
                             float b = corner == 0 ? info.colorBlueTopLeft : corner == 1 ? info.colorBlueBottomLeft : corner == 2 ? info.colorBlueBottomRight : info.colorBlueTopRight;
-                            tes.setColorOpaque_F(r, g, b);
-                        } else if (offsetLighting == 0 && world != null && completeLight != null) {
-                            tes.setBrightness(corner == 0 ? completeLight.brightnessTopLeft : corner == 1 ? completeLight.brightnessBottomLeft : corner == 2 ? completeLight.brightnessBottomRight : completeLight.brightnessTopRight);
+                            tessellator.setColorOpaque_F(r, g, b);
+                        } else if (lightingMode == LightingMode.NONE && world != null && completeLight != null) {
+                            tessellator.setBrightness(corner == 0 ? completeLight.brightnessTopLeft : corner == 1 ? completeLight.brightnessBottomLeft : corner == 2 ? completeLight.brightnessBottomRight : completeLight.brightnessTopRight);
                             float r = corner == 0 ? completeLight.colorRedTopLeft : corner == 1 ? completeLight.colorRedBottomLeft : corner == 2 ? completeLight.colorRedBottomRight : completeLight.colorRedTopRight;
                             float g = corner == 0 ? completeLight.colorGreenTopLeft : corner == 1 ? completeLight.colorGreenBottomLeft : corner == 2 ? completeLight.colorGreenBottomRight : completeLight.colorGreenTopRight;
                             float b = corner == 0 ? completeLight.colorBlueTopLeft : corner == 1 ? completeLight.colorBlueBottomLeft : corner == 2 ? completeLight.colorBlueBottomRight : completeLight.colorBlueTopRight;
-                            tes.setColorOpaque_F(r, g, b);
+                            tessellator.setColorOpaque_F(r, g, b);
                         }
 
                         if (face.textureCoordinates != null && face.textureCoordinates.length > 0) {
                             TextureCoordinate textureCoordinate = face.textureCoordinates[target];
-                            tes.addVertexWithUV(vertexCopy.x, vertexCopy.y, vertexCopy.z, textureCoordinate.u, textureCoordinate.v);
+                            tessellator.addVertexWithUV(vertexCopy.x, vertexCopy.y, vertexCopy.z, textureCoordinate.u, textureCoordinate.v);
                         } else {
-                            tes.addVertex(vertexCopy.x, vertexCopy.y, vertexCopy.z);
+                            tessellator.addVertex(vertexCopy.x, vertexCopy.y, vertexCopy.z);
                         }
 
                         if (vertexCount == 3 && i == 2) {
                             if (face.textureCoordinates != null && face.textureCoordinates.length > 0) {
                                 TextureCoordinate textureCoordinate = face.textureCoordinates[target];
-                                tes.addVertexWithUV(vertexCopy.x, vertexCopy.y, vertexCopy.z, textureCoordinate.u, textureCoordinate.v);
+                                tessellator.addVertexWithUV(vertexCopy.x, vertexCopy.y, vertexCopy.z, textureCoordinate.u, textureCoordinate.v);
                             } else {
-                                tes.addVertex(vertexCopy.x, vertexCopy.y, vertexCopy.z);
+                                tessellator.addVertex(vertexCopy.x, vertexCopy.y, vertexCopy.z);
                             }
                         }
                     }
                 }
             }
         }
+    }
+
+    public enum LightingMode {
+        NONE,
+        DEFAULT,
+        VERTEX
     }
 }

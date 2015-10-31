@@ -28,7 +28,6 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
     private TutorialBlockRenderer() {
         final String s = ExampleMod.RESOURCE_PREFIX + "models/cupola.obj";
         model = (WavefrontObject) AdvancedModelLoader.loadModel(new ResourceLocation(s));
-
         renderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
@@ -38,7 +37,7 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
         instance.startDrawingQuads();
         Matrix4 matrix = new Matrix4();
         matrix.translate(0.5, 0, 0.5);
-        RenderingUtils.renderStaticWavefrontModel(0, 0, 0, null, model, instance, matrix, 0, false);
+        RenderingUtils.renderStaticWavefrontModel(model, matrix, RenderingUtils.LightingMode.DEFAULT, false);
         instance.draw();
     }
 
@@ -48,7 +47,7 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
             Matrix4 matrix = new Matrix4();
             matrix.translate(x, y, z);
             matrix.translate(0.5, 0, 0.5);
-            RenderingUtils.renderStaticWavefrontModel(x, y, z, world, model, Tessellator.instance, matrix, 0, false);
+            RenderingUtils.renderStaticWavefrontModel(x, y, z, world, model, matrix, RenderingUtils.LightingMode.DEFAULT, false);
             return true;
         }
         return false;
