@@ -1,11 +1,12 @@
 package com.example.examplemod;
 
-import com.sun.prism.util.tess.Tess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -14,6 +15,7 @@ import net.minecraftforge.client.model.obj.WavefrontObject;
 public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
 
     private static TutorialBlockRenderer _instance;
+    private IIcon icon;
 
     public static TutorialBlockRenderer getInstance() {
         if (_instance == null) {
@@ -22,12 +24,11 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
         return _instance;
     }
 
-    private final WavefrontObject model;
+    private WavefrontObject originalModel;
     private final int renderId;
 
     private TutorialBlockRenderer() {
-        final String s = ExampleMod.RESOURCE_PREFIX + "models/cupola.obj";
-        model = (WavefrontObject) AdvancedModelLoader.loadModel(new ResourceLocation(s));
+
         renderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
@@ -37,7 +38,7 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
         instance.startDrawingQuads();
         Matrix4 matrix = new Matrix4();
         matrix.translate(0.5, 0, 0.5);
-        RenderingUtils.renderStaticWavefrontModel(model, matrix, RenderingUtils.LightingMode.DEFAULT, false);
+        RenderingUtils.renderStaticWavefrontModel(originalModel, matrix, RenderingUtils.LightingMode.DEFAULT, false);
         instance.draw();
     }
 
@@ -47,7 +48,7 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
             Matrix4 matrix = new Matrix4();
             matrix.translate(x, y, z);
             matrix.translate(0.5, 0, 0.5);
-            RenderingUtils.renderStaticWavefrontModel(x, y, z, world, model, matrix, RenderingUtils.LightingMode.DEFAULT, false);
+            RenderingUtils.renderStaticWavefrontModel(x, y, z, world, originalModel, matrix, RenderingUtils.LightingMode.DEFAULT, false);
             return true;
         }
         return false;
@@ -61,5 +62,16 @@ public class TutorialBlockRenderer implements ISimpleBlockRenderingHandler {
     @Override
     public int getRenderId() {
         return renderId;
+    }
+
+    public void remapTextures() {
+        //This won't neccessarily work if remapping to two texture sheets.
+        final String s = ExampleMod.RESOURCE_PREFIX + "models/cupola.obj";
+        originalModel = (WavefrontObject) AdvancedModelLoader.loadModel(new ResourceLocation(s));
+        RenderingUtils.remapUVs(originalModel.groupObjects, icon);
+    }
+
+    public void setIcon(IIcon icon) {
+        this.icon = icon;
     }
 }
