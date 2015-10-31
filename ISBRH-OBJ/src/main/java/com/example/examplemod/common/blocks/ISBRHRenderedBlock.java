@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.example.examplemod.common.blocks;
 
+import com.example.examplemod.client.RenderingUtils;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.material.Material;
 

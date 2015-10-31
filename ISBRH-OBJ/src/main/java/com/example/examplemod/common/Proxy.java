@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.example.examplemod.common;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

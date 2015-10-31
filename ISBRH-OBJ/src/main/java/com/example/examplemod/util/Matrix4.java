@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.example.examplemod.util;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

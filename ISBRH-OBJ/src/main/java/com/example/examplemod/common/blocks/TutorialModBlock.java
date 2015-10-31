@@ -1,5 +1,7 @@
-package com.example.examplemod;
+package com.example.examplemod.common.blocks;
 
+import com.example.examplemod.ExampleMod;
+import com.example.examplemod.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

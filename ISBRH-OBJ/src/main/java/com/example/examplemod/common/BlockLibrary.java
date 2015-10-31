@@ -1,5 +1,8 @@
-package com.example.examplemod;
+package com.example.examplemod.common;
 
+import com.example.examplemod.ExampleMod;
+import com.example.examplemod.Reference;
+import com.example.examplemod.common.blocks.TutorialBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 

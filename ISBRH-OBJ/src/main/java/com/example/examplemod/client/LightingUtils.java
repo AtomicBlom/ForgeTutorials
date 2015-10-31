@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.example.examplemod.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

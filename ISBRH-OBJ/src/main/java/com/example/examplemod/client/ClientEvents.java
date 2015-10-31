@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.example.examplemod.client;
 
+import com.example.examplemod.client.rendering.TutorialBlockRenderer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.event.TextureStitchEvent;

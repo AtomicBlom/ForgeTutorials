@@ -1,16 +1,14 @@
-package com.example.examplemod;
+package com.example.examplemod.client;
 
+import com.example.examplemod.util.Matrix4;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**

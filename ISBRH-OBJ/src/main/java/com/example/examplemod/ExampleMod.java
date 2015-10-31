@@ -1,5 +1,8 @@
 package com.example.examplemod;
 
+import com.example.examplemod.client.ClientEvents;
+import com.example.examplemod.common.BlockLibrary;
+import com.example.examplemod.common.Proxy;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

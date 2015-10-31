@@ -1,11 +1,8 @@
-package com.example.examplemod;
+package com.example.examplemod.common.blocks;
 
+import com.example.examplemod.client.rendering.TutorialBlockRenderer;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class TutorialBlock extends ISBRHRenderedBlock {
 
