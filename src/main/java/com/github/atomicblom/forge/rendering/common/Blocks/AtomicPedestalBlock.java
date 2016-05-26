@@ -7,4 +7,10 @@ public class AtomicPedestalBlock extends Block {
     public AtomicPedestalBlock() {
         super(Material.GROUND);
     }
+
+    @Override
+    public String getUnlocalizedName() {
+
+        return "tile." + getRegistryName();
+    }
 }
