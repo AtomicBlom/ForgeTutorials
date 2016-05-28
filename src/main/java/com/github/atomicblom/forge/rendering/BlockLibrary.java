@@ -1,10 +1,9 @@
 package com.github.atomicblom.forge.rendering;
 
- import net.minecraft.block.Block;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
- import net.minecraft.item.Item;
- import net.minecraft.item.ItemBlock;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -15,20 +14,24 @@ public final class BlockLibrary {
     public static final Block atomicPedestal = null;
 
     static void registerBlocks() {
-        registerBlockAndItem(new Block(Material.GROUND), Resources.Blocks.AtomicPedestal, CreativeTabs.BUILDING_BLOCKS);
+        registerBlockAndItem(new Block(Material.GROUND), Resources.Blocks.AtomicPedestal);
     }
 
-    private static void registerBlockAndItem(Block block, ResourceLocation name, CreativeTabs tab) {
-        block.setRegistryName(name)
-                .setCreativeTab(tab)
+    private static void registerBlockAndItem(Block block, ResourceLocation name) {
+        GameRegistry.register(configureBlock(block, name));
+        GameRegistry.register(getItemForBlock(block));
+    }
+
+    private static Block configureBlock(Block block, ResourceLocation name) {
+        return block.setRegistryName(name)
+                .setCreativeTab(Resources.CreativeTab)
                 .setUnlocalizedName(Localization.getUnlocalizedNameFor(block));
+    }
 
-        Item blockItem = new ItemBlock(block)
-                .setRegistryName(name)
-                .setCreativeTab(tab)
+    private static Item getItemForBlock(Block block) {
+        return new ItemBlock(block)
+                .setRegistryName(block.getRegistryName())
+                .setCreativeTab(Resources.CreativeTab)
                 .setUnlocalizedName(block.getUnlocalizedName());
-
-        GameRegistry.register(block);
-        GameRegistry.register(blockItem);
     }
 }

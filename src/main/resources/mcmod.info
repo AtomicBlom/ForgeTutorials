@@ -2,7 +2,7 @@
 {
   "modid": "forgerendering",
   "name": "Forge Rendering Tutorials",
-  "description": "Teching people how to render in Minecraft and Forge.",
+  "description": "Teaching people how to render in Minecraft and Forge.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

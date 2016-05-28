@@ -24,6 +24,6 @@ public class Localization {
         if (registryName == null) {
             throw new RuntimeException("Attempt to get the registry name of a block that doesn't have one yet.");
         }
-        return "tile." + registryName;
+        return registryName.toString();
     }
 }
