@@ -2,9 +2,11 @@ package com.github.atomicblom.forge.rendering;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @SuppressWarnings("WeakerAccess")
@@ -29,9 +31,12 @@ public final class BlockLibrary {
     }
 
     private static Item getItemForBlock(Block block) {
-        return new ItemBlock(block)
+
+        final Item item = new ItemBlock(block)
                 .setRegistryName(block.getRegistryName())
                 .setCreativeTab(Resources.CreativeTab)
                 .setUnlocalizedName(block.getUnlocalizedName());
+        //ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName(), null));
+        return item;
     }
 }

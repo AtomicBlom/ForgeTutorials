@@ -1,5 +1,10 @@
 {
   "variants": {
-    "normal": { "model": "forgerendering:atomicPedestalModel" }
+    "normal": [
+      { "model": "forgerendering:atomicPedestal" }
+    ],
+    "inventory": [
+      { "model": "forgerendering:atomicPedestal" }
+    ]
   }
 }
