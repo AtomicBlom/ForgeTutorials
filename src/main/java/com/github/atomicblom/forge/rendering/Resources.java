@@ -10,6 +10,8 @@ public class Resources {
     public static final CreativeTabs CreativeTab = CreativeTabs.BUILDING_BLOCKS;
 
     public static final class Blocks {
+        public static final String NORMAL_VARIANT = "normal";
+
         public static final ResourceLocation AtomicPedestal = new ResourceLocation(MODID, "atomicPedestal");
     }
 }
