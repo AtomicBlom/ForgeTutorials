@@ -9,13 +9,106 @@
   },
   "elements": [
     {
+      "__comment": "Bottom of the base",
+
       "from": [0,0,0],
-      "to": [16,1,0],
+      "to": [16,0,16],
+      "faces": {
+        "down": {"texture": "#base", "cullface": "down" }
+      }
+    },
+    {
+      "__comment": "Top of the base",
+
+      "from": [1,0,1],
+      "to": [15,1,15],
+      "faces": {
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Angled Sides of the Base",
+
+      "from": [2,0,0],
+      "to": [14,1,0],
+      "rotation": {"origin": [8,0,0], "axis": "x", "angle": 45, "rescale": true},
       "faces": {
         "north": {"texture": "#base" }
       }
     },
     {
+      "from": [0,0,2],
+      "to": [0,1,14],
+      "rotation": {"origin": [0,0,8], "axis": "z", "angle": -45, "rescale": true},
+      "faces": {
+        "west": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [2,0,16],
+      "to": [14,1,16],
+      "rotation": {"origin": [8,0,16], "axis": "x", "angle": -45, "rescale": true},
+      "faces": {
+        "south": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [16,0,2],
+      "to": [16,1,14],
+      "rotation": {"origin": [16,0,8], "axis": "z", "angle": 45, "rescale": true},
+      "faces": {
+        "east": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Start of the Corner Pieces",
+
+      "from": [0,0,0],
+      "to": [2,2,2],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [14,0,0],
+      "to": [16,2,2],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [0,0,14],
+      "to": [2,2,16],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [14,0,14],
+      "to": [16,2,16],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Protons",
+
       "from": [4, 7, 5],
       "to": [7, 10, 8],
       "faces": {
@@ -64,6 +157,8 @@
       }
     },
     {
+      "__comment": "Top set of Neutrons",
+
       "from": [6, 10, 5],
       "to": [8, 12, 7],
       "faces": {
@@ -112,6 +207,8 @@
       }
     },
     {
+      "__comment": "Lower set of Neutrons",
+
       "from": [5, 5, 5],
       "to": [7, 7, 7],
       "faces": {
@@ -160,6 +257,8 @@
       }
     },
     {
+      "__comment": "Centre Neutron",
+
       "from": [7, 7.5, 7],
       "to": [9, 9.5, 9],
       "faces": {
