@@ -1,0 +1,274 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "base": "blocks/stone",
+    "proton": "blocks/water_flow",
+    "upper_neutron": "blocks/lava_flow",
+    "lower_neutron": "blocks/lava_flow",
+    "centre_neutron": "blocks/lava_still"
+  },
+  "elements": [
+    {
+      "__comment": "Bottom of the base",
+
+      "from": [0,0,0],
+      "to": [16,0,16],
+      "faces": {
+        "down": {"texture": "#base", "cullface": "down" }
+      }
+    },
+    {
+      "__comment": "Top of the base",
+
+      "from": [1,0,1],
+      "to": [15,1,15],
+      "faces": {
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Angled Sides of the Base",
+
+      "from": [2,0,0],
+      "to": [14,1,0],
+      "rotation": {"origin": [8,0,0], "axis": "x", "angle": 45, "rescale": true},
+      "faces": {
+        "north": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [0,0,2],
+      "to": [0,1,14],
+      "rotation": {"origin": [0,0,8], "axis": "z", "angle": -45, "rescale": true},
+      "faces": {
+        "west": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [2,0,16],
+      "to": [14,1,16],
+      "rotation": {"origin": [8,0,16], "axis": "x", "angle": -45, "rescale": true},
+      "faces": {
+        "south": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [16,0,2],
+      "to": [16,1,14],
+      "rotation": {"origin": [16,0,8], "axis": "z", "angle": 45, "rescale": true},
+      "faces": {
+        "east": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Start of the Corner Pieces",
+
+      "from": [0,0,0],
+      "to": [2,2,2],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [14,0,0],
+      "to": [16,2,2],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [0,0,14],
+      "to": [2,2,16],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "from": [14,0,14],
+      "to": [16,2,16],
+      "faces": {
+        "north": {"texture": "#base" },
+        "south": {"texture": "#base" },
+        "east": {"texture": "#base" },
+        "west": {"texture": "#base" },
+        "up": {"texture": "#base" }
+      }
+    },
+    {
+      "__comment": "Protons",
+
+      "from": [4, 7, 5],
+      "to": [7, 10, 8],
+      "faces": {
+        "north": {"texture": "#proton"},
+        "south": {"texture": "#proton"},
+        "east": {"texture": "#proton"},
+        "west": {"texture": "#proton"},
+        "up": {"texture": "#proton"},
+        "down": {"texture": "#proton"}
+      }
+    },
+    {
+      "from": [5, 7, 9],
+      "to": [8, 10, 12],
+      "faces": {
+        "north": {"texture": "#proton"},
+        "south": {"texture": "#proton"},
+        "east": {"texture": "#proton"},
+        "west": {"texture": "#proton"},
+        "up": {"texture": "#proton"},
+        "down": {"texture": "#proton"}
+      }
+    },
+    {
+      "from": [9, 7, 8],
+      "to": [12, 10, 11],
+      "faces": {
+        "north": {"texture": "#proton"},
+        "south": {"texture": "#proton"},
+        "east": {"texture": "#proton"},
+        "west": {"texture": "#proton"},
+        "up": {"texture": "#proton"},
+        "down": {"texture": "#proton"}
+      }
+    },
+    {
+      "from": [8, 7, 4],
+      "to": [11, 10, 7],
+      "faces": {
+        "north": {"texture": "#proton"},
+        "south": {"texture": "#proton"},
+        "east": {"texture": "#proton"},
+        "west": {"texture": "#proton"},
+        "up": {"texture": "#proton"},
+        "down": {"texture": "#proton"}
+      }
+    },
+    {
+      "__comment": "Top set of Neutrons",
+
+      "from": [6, 10, 5],
+      "to": [8, 12, 7],
+      "faces": {
+        "north": {"texture": "#upper_neutron"},
+        "south": {"texture": "#upper_neutron"},
+        "east": {"texture": "#upper_neutron"},
+        "west": {"texture": "#upper_neutron"},
+        "up": {"texture": "#upper_neutron"},
+        "down": {"texture": "#upper_neutron"}
+      }
+    },
+    {
+      "from": [5, 10, 8],
+      "to": [7, 12, 10],
+      "faces": {
+        "north": {"texture": "#upper_neutron"},
+        "south": {"texture": "#upper_neutron"},
+        "east": {"texture": "#upper_neutron"},
+        "west": {"texture": "#upper_neutron"},
+        "up": {"texture": "#upper_neutron"},
+        "down": {"texture": "#upper_neutron"}
+      }
+    },
+    {
+      "from": [8, 10, 9],
+      "to": [10, 12, 11],
+      "faces": {
+        "north": {"texture": "#upper_neutron"},
+        "south": {"texture": "#upper_neutron"},
+        "east": {"texture": "#upper_neutron"},
+        "west": {"texture": "#upper_neutron"},
+        "up": {"texture": "#upper_neutron"},
+        "down": {"texture": "#upper_neutron"}
+      }
+    },
+    {
+      "from": [9, 10, 6],
+      "to": [11, 12, 8],
+      "faces": {
+        "north": {"texture": "#upper_neutron"},
+        "south": {"texture": "#upper_neutron"},
+        "east": {"texture": "#upper_neutron"},
+        "west": {"texture": "#upper_neutron"},
+        "up": {"texture": "#upper_neutron"},
+        "down": {"texture": "#upper_neutron"}
+      }
+    },
+    {
+      "__comment": "Lower set of Neutrons",
+
+      "from": [5, 5, 5],
+      "to": [7, 7, 7],
+      "faces": {
+        "north": {"texture": "#lower_neutron"},
+        "south": {"texture": "#lower_neutron"},
+        "east": {"texture": "#lower_neutron"},
+        "west": {"texture": "#lower_neutron"},
+        "up": {"texture": "#lower_neutron"},
+        "down": {"texture": "#lower_neutron"}
+      }
+    },
+    {
+      "from": [6, 5, 9],
+      "to": [8, 7, 11],
+      "faces": {
+        "north": {"texture": "#lower_neutron"},
+        "south": {"texture": "#lower_neutron"},
+        "east": {"texture": "#lower_neutron"},
+        "west": {"texture": "#lower_neutron"},
+        "up": {"texture": "#lower_neutron"},
+        "down": {"texture": "#lower_neutron"}
+      }
+    },
+    {
+      "from": [9, 5, 8],
+      "to": [11, 7, 10],
+      "faces": {
+        "north": {"texture": "#lower_neutron"},
+        "south": {"texture": "#lower_neutron"},
+        "east": {"texture": "#lower_neutron"},
+        "west": {"texture": "#lower_neutron"},
+        "up": {"texture": "#lower_neutron"},
+        "down": {"texture": "#lower_neutron"}
+      }
+    },
+    {
+      "from": [8, 5, 5],
+      "to": [10, 7, 7],
+      "faces": {
+        "north": {"texture": "#lower_neutron"},
+        "south": {"texture": "#lower_neutron"},
+        "east": {"texture": "#lower_neutron"},
+        "west": {"texture": "#lower_neutron"},
+        "up": {"texture": "#lower_neutron"},
+        "down": {"texture": "#lower_neutron"}
+      }
+    },
+    {
+      "__comment": "Centre Neutron",
+
+      "from": [7, 7.5, 7],
+      "to": [9, 9.5, 9],
+      "faces": {
+        "north": {"texture": "#centre_neutron"},
+        "south": {"texture": "#centre_neutron"},
+        "east": {"texture": "#centre_neutron"},
+        "west": {"texture": "#centre_neutron"},
+        "up": {"texture": "#centre_neutron"},
+        "down": {"texture": "#centre_neutron"}
+      }
+    }
+  ]
+}
